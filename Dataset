@@ -1,0 +1,50 @@
+1. Recommended Dataset Sources
+If you don't already have a dataset, here are a few publicly available options:
+
+Telco Customer Churn Dataset (Kaggle)
+A well-known dataset from a telecom company including customer demographics, services subscribed, account info, and churn status.
+
+IBM Telco Customer Churn Dataset (on IBM's site)
+Similar to the Kaggle version, often used for classification tutorials.
+
+UCI Machine Learning Repository – Customer Churn Datasets
+https://archive.ics.uci.edu/ – search for “churn.”
+
+Would you like me to fetch one of these datasets for you?
+
+2. Features to Analyze
+Common features to predict churn include:
+
+Customer demographics (age, gender, location)
+
+Subscription details (services used, contract type)
+
+Billing information (monthly charges, total charges, payment method)
+
+Customer behavior (usage patterns, number of complaints)
+
+Tenure (how long they've been a customer)
+
+3. ML Techniques for Churn Prediction
+Logistic Regression
+
+Decision Trees / Random Forest
+
+XGBoost / LightGBM
+
+Neural Networks
+
+Clustering for segmentation + classification
+
+4. Typical Workflow
+Data Cleaning and Preprocessing
+
+Exploratory Data Analysis (EDA)
+
+Feature Engineering
+
+Model Training and Evaluation
+
+Model Interpretation (SHAP, feature importance)
+
+Deploy / Predict on New Data
