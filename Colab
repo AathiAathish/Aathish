@@ -1,0 +1,58 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, roc_auc_score
+
+# Load dataset
+def load_data(file_path):
+    data = pd.read_csv(file_path)
+    return data
+
+# Preprocess data
+def preprocess_data(data):
+    # Handle missing values
+    data = data.dropna()
+
+    # Encode categorical variables
+    label_enc = LabelEncoder()
+    for col in data.select_dtypes(include=['object']).columns:
+        data[col] = label_enc.fit_transform(data[col])
+
+    # Feature scaling
+    scaler = StandardScaler()
+    features = data.drop('Churn', axis=1)
+    target = data['Churn']
+    features = scaler.fit_transform(features)
+
+    return features, target
+
+# Train model
+def train_model(features, target):
+    X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.3, random_state=42)
+
+    model = RandomForestClassifier(random_state=42)
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
+    # Evaluation
+    accuracy = accuracy_score(y_test, y_pred)
+    roc_score = roc_auc_score(y_test, y_pred)
+    print(f"Accuracy: {accuracy}")
+    print(f"ROC AUC Score: {roc_score}")
+    print("\nClassification Report:\n", classification_report(y_test, y_pred))
+
+    return model
+
+# Main function
+def main():
+    file_path = 'customer_data.csv'
+    data = load_data(file_path)
+    features, target = preprocess_data(data)
+    model = train_model(features, target)
+
+if __name__ == "__main__":
+    main()
